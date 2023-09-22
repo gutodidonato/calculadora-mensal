@@ -1,18 +1,30 @@
 from prettytable.colortable import ColorTable, Themes
 import time
+import art
 x = ColorTable(theme=Themes.OCEAN)
 x.field_names = ["Razão","Valor"]
 
-
+def checar_numero(mensagem):
+    while True:
+        try:
+            valor = float(input(mensagem))
+            return valor
+        except ValueError:
+            print("Valor inválido. Por favor, insira um número válido.")
+        
+    
 
 contador = 0
 desligar = False
 
-
+print(art.logo)
+print(f"\nSeja bem-vindo à calculadora de perdas")
+time.sleep(2)
 while True:
+
     '''ganhos'''
     while not desligar:
-        somar = int(input("Diga um valor ganho? "))
+        somar = checar_numero("Diga um valor de ganho: ")
         contador += somar
         origem = input("Diga a origem: ")
         x.add_row([f"{origem}", f"+ {somar}"])
@@ -23,7 +35,7 @@ while True:
     desligar = False
     '''Perdas'''
     while not desligar:
-        somar = int(input("Diga um valor de custo? "))
+        somar = checar_numero("Diga um valor de custo: ")
         origem = input("Diga a origem: ")
         contador -= somar
         x.add_row([f"{origem}", f"- {somar}"])
@@ -44,3 +56,4 @@ while True:
         break
     print("\n ")
     
+print("banana")
